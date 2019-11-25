@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "outDir": "../../out/client",
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "incremental": true
+  }
+}

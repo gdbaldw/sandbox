@@ -1,0 +1,19 @@
+{
+  "name": "lambdas",
+  "description": "sandbox",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "scripts": {
+    "clean": "rm -rf ../../out/lambdas",
+    "build": "[ -f index.ts ] && tsc || exit 0",
+    "clean_build": "yarn clean && yarn build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.35"
+  }
+}

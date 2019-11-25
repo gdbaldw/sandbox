@@ -1,0 +1,25 @@
+{
+  "name": "lit-sudoku",
+  "description": "sandbox",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "clean": "lerna exec yarn clean",
+    "build": "lerna exec yarn build",
+    "clean_build": "lerna exec yarn clean_build",
+    "watch": "tsc -b packages/* -w",
+    "dev": "yarn netlify dev --dir=out/client --functions=out/lambdas",
+    "iterate": "yarn watch & yarn dev",
+    "deploy": "yarn netlify deploy --prod --dir=out/client --functions=out/lambdas"
+  },
+  "dependencies": {
+    "lerna": "^3.19.0",
+    "netlify-cli": "^2.21.0"
+  }
+}

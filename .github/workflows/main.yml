@@ -1,0 +1,48 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules 
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-node_modules
+  
+    - name: Cache client web modules
+      uses: actions/cache@v1
+      with:
+        path: packages/client/web_modules 
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-client_web_modules
+  
+    - name: Cache client node modules
+      id: client_node_modules
+      uses: actions/cache@v1
+      with:
+        path: packages/client/node_modules 
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-client_node_modules
+  
+    - name: Cache out directory
+      uses: actions/cache@v1
+      with:
+        path: out
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-out
+  
+    - name: Install Dependencies
+      if: steps.client_node_modules.outputs.cache-hit != 'true'
+      run: yarn install
+
+    - name: Build
+      run: yarn build
+
+    - name: Deploy
+      env:
+        NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_AUTH_TOKEN}}
+        NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+      run: yarn deploy

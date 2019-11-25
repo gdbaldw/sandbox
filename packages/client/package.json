@@ -1,0 +1,24 @@
+{
+  "name": "client",
+  "description": "sandbox",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "scripts": {
+    "postinstall": "npx @pika/web",
+    "clean": "rm -rf ../../out/client",
+    "build": "tsc && cp index.html ../../out/client",
+    "clean_build": "yarn clean && yarn build"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.1",
+    "sudoku": "https://github.com/gdbaldw/sudoku.git"
+  },
+  "devDependencies": {
+    "@pika/web": "^0.6.1",
+    "postinstall": "^0.7.0"
+  }
+}
